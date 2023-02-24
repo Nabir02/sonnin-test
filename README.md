@@ -1,66 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Product API
 
-## About Laravel
+The Product API is a simple API that allows users to manage and sell products. Users can create, read, update, and delete products, as well as search for products by name or price.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Technologies used
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The Product API is built using the PHP programming language and the Laravel framework. We also used the Laravel Sanctum package to provide authentication and Laravel Dusk for testing.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# API endpoints
 
-## Learning Laravel
+The Product API provides the following endpoints:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+GET /api/products: Get a list of all products
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+GET /api/products/{id}: Get a single product by ID
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+POST /api/products: Create a new product
 
-## Laravel Sponsors
+PUT /api/products/{id}: Update an existing product by ID
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+DELETE /api/products/{id}: Delete an existing product by ID
 
-### Premium Partners
+GET /api/products/search: Search for products by name or price
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+All endpoints except for the search endpoint require authentication using the Laravel Sanctum package. Users can authenticate by sending a POST request to /api/login with their email and password. This will return an access token that they can use to authenticate subsequent requests.
 
-## Contributing
+The request and response formats for each endpoint are as follows:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+GET /api/products: Returns a JSON array of product objects.
 
-## Code of Conduct
+GET /api/products/{id}: Returns a JSON object representing the product with the given ID.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+POST /api/products: Accepts a JSON object representing the new product to create. Returns a JSON object representing the created product.
 
-## Security Vulnerabilities
+PUT /api/products/{id}: Accepts a JSON object representing the updated product. Returns a JSON object representing the updated product.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+DELETE /api/products/{id}: Deletes the product with the given ID. Returns an empty response.
 
-## License
+GET /api/products/search: Accepts query parameters for name and price. Returns a JSON array of product objects that match the search criteria.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Input validation and error handling
+
+All API endpoints include input validation and error handling to prevent malformed requests and provide meaningful error messages. For example, if a user sends an invalid email address when logging in, the API will return a 422 Unprocessable Entity error with a message explaining the validation error.
+
+# Additional features
+
+In addition to the basic CRUD operations, the Product API also includes a search endpoint that allows users to search for products by name or price. Users can send a GET request to /api/products/search with query parameters for name and price. The API will return a list of products that match the search criteria.
+
+# Conclusion
+
+The Product API is a simple but powerful tool for managing and selling products. By leveraging the power of the Laravel framework, we were able to quickly build a robust API that includes authentication, input validation, and error handling. We also added a search endpoint to make it easy for users to find the products they need. Overall, we are confident that the Product API will meet the needs of our client and their users.
